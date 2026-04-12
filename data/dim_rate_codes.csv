@@ -1,5 +1,5 @@
-﻿rate_code_id,rate_name,is_commissionable
-RACK,Rack Rate,TRUE
-PROMO,Promotional Rate,TRUE
-CORP,Corporate Rate,TRUE
-NET,Net Rate,FALSE
+rate_code_id,rate_name,is_commissionable
+RACK,Rack Rate,True
+PROMO,Promotional Rate,True
+CORP,Corporate Rate,True
+NET,Net Rate,False

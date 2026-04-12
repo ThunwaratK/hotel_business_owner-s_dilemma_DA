@@ -1,5 +1,5 @@
-﻿channel_id,channel_name,channel_type,commission_model,default_commission_rate
+channel_id,channel_name,channel_type,commission_model,default_commission_rate
 CH_OTA_BKG,Booking.com,OTA,Percentage,0.18
 CH_OTA_EXP,Expedia,OTA,Percentage,0.15
-CH_DIRECT,Direct Website,Direct,Marketing Cost,0
-CH_WHOLE,Wholesale Partner,Wholesale,Net Rate,0
+CH_DIRECT,Direct Website,Direct,Marketing Cost,0.0
+CH_WHOLE,Wholesale Partner,Wholesale,Net Rate,0.0
