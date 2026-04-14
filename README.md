@@ -43,8 +43,6 @@ Act as a Data Engineer. I need to generate a mock dataset for a hotel analytics 
 - rate_code_id: Randomly assigned from dim_rate_codes
 - rooms_sold: Random integer between 1 and 3
 - gross_room_revenue: Random float value
-- commission_amount: Calculated field. If the rate code is_commissionable is True, calculate this as gross_room_revenue * default_commission_rate of the respective channel. Otherwise, it is 0
-- net_room_revenue: Calculated field. gross_room_revenue - commission_amount
 - status: Randomly assigned ['Confirmed', 'Cancelled', 'Checked-Out']
 
 ### 4. fact_marketing_spend (120 rows)
