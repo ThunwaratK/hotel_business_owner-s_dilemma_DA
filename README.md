@@ -16,7 +16,7 @@ The core problem is high distribution costs. The hotel relies heavily on third-p
 Increase Net ADR (Average Daily Rate after commissions) by 10% within 6 months by optimizing promotions (rate codes) across different booking channels based on their commission structures.
 
 ## Hypothesis
-- OTA channels have lower profitability than other channels due to commission costs.
+- OTA channels have lower net revenue than other channels due to commission costs.
 - When marketing spend is considered, direct channels may not always be the most cost-efficient.
 - Offering promotional rates on OTA channels reduces Net ADR per booking compared with non-promotional OTA bookings.
 
