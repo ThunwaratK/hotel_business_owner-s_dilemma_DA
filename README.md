@@ -18,7 +18,7 @@ Increase Net ADR (Average Daily Rate after commissions) by 10% within 6 months b
 ## Hypothesis
 - OTA channels have lower profitability than other channels due to commission costs.
 - When marketing spend is considered, direct channels may not always be the most cost-efficient.
-- Offering promotional rates on OTA channels significantly reduces our overall profit margins.
+- Offering promotional rates on OTA channels reduces Net ADR per booking compared with non-promotional OTA bookings.
 
 ## Prompt used to generated mock dataset
 
