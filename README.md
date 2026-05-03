@@ -117,6 +117,22 @@ Direct marketing spend fact table. Date format is dd/mm/yyyy.
 | platform | Marketing platform (Google Ads, Facebook). |
 | cost_amount | Spend amount. |
 
+
+## Data Cleaning
+- Filtered out cancelled bookings to eliminate non-realized revenue and ensure the analysis reflects only actual revenue-generating stays. This step improves the accuracy of Net ADR and channel profitability calculations by excluding reservations that did not materialize 
+
+## Data Transformations
+
+Some bookings come from commission-based channels but show no commission deduction. After checking, those rows have gross_room_revenue that was already net of commission, so commission and gross_room_revenue are inconsistent. We created true_gross_room_revenue and true_commission_cost to correct this.
+
+- true_gross_room_revenue:
+	- If is_commissionable = FALSE and default_commission_rate > 0, then $gross\ room\ revenue / (1 - default\ commission\ rate)$.
+	- Else, $gross\ room\ revenue$.
+- true_commission_cost:
+	- If is_commissionable = FALSE and default_commission_rate > 0, then $true\_gross\_room\_revenue - gross\ room\ revenue$.
+	- Else, $commission\ cost$.
+
+ 
 ## Measures
 
 - Commission Cost (per booking): if is_commissionable is TRUE, $gross\ room\ revenue \times default\ commission\ rate$; else 0.
@@ -139,10 +155,6 @@ Direct marketing spend fact table. Date format is dd/mm/yyyy.
 | Channel Type | dim_channels.channel_type | Channel group. | OTA, Direct, Wholesale |
 | Commission Model | dim_channels.commission_model | Distribution cost structure. | Percentage, Marketing Cost, Net Rate |
 | Rate Code | dim_rate_codes.rate_name (join via rate_code_id) | Rate plan category. | Rack Rate, Promotional Rate, Corporate Rate, Net Rate |
-
-  
-## 5. Data Cleaning
-- Filtered out cancelled bookings to eliminate non-realized revenue and ensure the analysis reflects only actual revenue-generating stays. This step improves the accuracy of Net ADR and channel profitability calculations by excluding reservations that did not materialize 
 
 ## x. Recommendations
 - เพิ่ม Wholesale partners ทำให้มีการเข้าพักจากช่องทางนี้มากขึ้น เพื่อลดการเพิ่งพา OTA Channels
