@@ -57,57 +57,79 @@ Act as a Data Engineer. I need to generate a mock dataset for a hotel analytics 
 - channel_id: Strictly set to 'CH_DIRECT'
 - platform: Randomly ['Google Ads', 'Facebook']
 - cost_amount: Random integer for ad spend
-## Data Dictionary
+
 ## Data Dictionary
 
 ### dim_channels (data/hotel_csv/dim_channels.csv)
 Channel reference table.
 
-- channel_id: Unique channel key (e.g., CH_OTA_BKG).
-- channel_name: Human-readable channel name.
-- channel_type: Channel group (OTA, Direct, Wholesale).
-- commission_model: How distribution cost is applied (Percentage, Marketing Cost, Net Rate).
-- default_commission_rate: Percentage commission rate used for commissionable bookings.
+| Field | Description |
+| --- | --- |
+| channel_id | Unique channel key (e.g., CH_OTA_BKG). |
+| channel_name | Human-readable channel name. |
+| channel_type | Channel group (OTA, Direct, Wholesale). |
+| commission_model | How distribution cost is applied (Percentage, Marketing Cost, Net Rate). |
+| default_commission_rate | Percentage commission rate used for commissionable bookings. |
 
 ### dim_rate_codes (data/hotel_csv/dim_rate_codes.csv)
 Rate plan reference table.
 
-- rate_code_id: Unique rate code key (RACK, PROMO, CORP, NET).
-- rate_name: Human-readable rate name.
-- is_commissionable: Whether the rate is subject to commission.
+| Field | Description |
+| --- | --- |
+| rate_code_id | Unique rate code key (RACK, PROMO, CORP, NET). |
+| rate_name | Human-readable rate name. |
+| is_commissionable | Whether the rate is subject to commission. |
 
 ### fact_bookings (data/hotel_csv/bookings.csv)
 Booking-level fact table. Date format is dd/mm/yyyy.
 
-- booking_id: Unique booking key.
-- booking_date: Booking creation date.
-- check_in_date: Arrival date.
-- channel_id: Foreign key to dim_channels.
-- rate_code_id: Foreign key to dim_rate_codes.
-- rooms_sold: Number of rooms in the booking.
-- gross_room_revenue: Revenue before commission.
-- status: Booking status (Confirmed, Cancelled, Checked-Out).
-- is_commissionable: Pulled from dim_rate_codes for the booking rate.
-- default_commission_rate: Pulled from dim_channels for the booking channel.
-- commission_cost: If is_commissionable is TRUE, gross_room_revenue * default_commission_rate; else 0.
-- net_room_revenue: gross_room_revenue - commission_cost.
-- OCC: Occupancy rate value for the check_in_date (0 to 1). If recalculating, use rooms_sold / total_rooms, but total_rooms is not stored, so OCC is treated as provided.
-- Day Name: Day of week for check_in_date.
-- true_gross_room_revenue: If is_commissionable is TRUE, equals gross_room_revenue. If FALSE, gross_room_revenue / (1 - default_commission_rate).
-- true_commission_cost: If is_commissionable is TRUE, equals commission_cost. If FALSE, true_gross_room_revenue * default_commission_rate.
-- true_net_room_revenue: If is_commissionable is TRUE, equals net_room_revenue. If FALSE, equals gross_room_revenue.
-- ADR: gross_room_revenue / rooms_sold.
-- net_ADR: net_room_revenue / rooms_sold.
-- net_RevPAR: net_ADR * OCC.
+| Field | Description |
+| --- | --- |
+| booking_id | Unique booking key. |
+| booking_date | Booking creation date. |
+| check_in_date | Arrival date. |
+| channel_id | Foreign key to dim_channels. |
+| rate_code_id | Foreign key to dim_rate_codes. |
+| rooms_sold | Number of rooms in the booking. |
+| gross_room_revenue | Revenue before commission. |
+| status | Booking status (Confirmed, Cancelled, Checked-Out). |
+| is_commissionable | Rate commission flag pulled from dim_rate_codes. |
+| default_commission_rate | Commission rate pulled from dim_channels. |
+| commission_cost | Commission cost per booking. |
+| net_room_revenue | Revenue after commission. |
+| OCC | Occupancy rate value for check_in_date (0 to 1). |
+| Day Name | Day of week for check_in_date. |
+| true_gross_room_revenue | Gross revenue before commission for non-commissionable rates. |
+| true_commission_cost | Commission cost for non-commissionable rates. |
+| true_net_room_revenue | Net revenue aligned to true gross logic. |
+| ADR | Average daily rate. |
+| net_ADR | Net average daily rate. |
+| net_RevPAR | Net revenue per available room. |
 
 ### fact_marketing_spend (data/hotel_csv/fact_marketing_spend.csv)
 Direct marketing spend fact table. Date format is dd/mm/yyyy.
 
-- spend_id: Unique spend key.
-- spend_date: Spend date.
-- channel_id: Always CH_DIRECT.
-- platform: Marketing platform (Google Ads, Facebook).
-- cost_amount: Spend amount.
+| Field | Description |
+| --- | --- |
+| spend_id | Unique spend key. |
+| spend_date | Spend date. |
+| channel_id | Always CH_DIRECT. |
+| platform | Marketing platform (Google Ads, Facebook). |
+| cost_amount | Spend amount. |
+
+## Measures
+
+- Commission Cost (per booking): if is_commissionable is TRUE, $gross\ room\ revenue \times default\ commission\ rate$; else 0.
+- Net Room Revenue (per booking): $gross\ room\ revenue - commission\ cost$.
+- OCC: Provided in dataset; if recalculating, $rooms\_sold / total\_rooms$ (total_rooms not stored).
+- True Gross Room Revenue: if is_commissionable is TRUE, equals gross_room_revenue; else $gross\ room\ revenue / (1 - default\ commission\ rate)$.
+- True Commission Cost: if is_commissionable is TRUE, equals commission_cost; else $true\_gross\_room\_revenue \times default\ commission\ rate$.
+- True Net Room Revenue: if is_commissionable is TRUE, equals net_room_revenue; else equals gross_room_revenue.
+- ADR: $gross\ room\ revenue / rooms\_sold$.
+- Net ADR: $net\ room\ revenue / rooms\_sold$.
+- Net RevPAR: $net\ ADR \times OCC$.
+- Cost Per Booking: $Total\ Acquisition\ Cost / COUNTD(booking\_id)$.
+- Net Revenue Margin %: $(SUM(true\ gross\ room\ revenue) - Total\ Acquisition\ Cost) / SUM(true\ gross\ room\ revenue)$.
 
   
 ## 5. Data Cleaning
