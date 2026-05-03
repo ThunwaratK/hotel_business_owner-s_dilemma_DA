@@ -60,3 +60,14 @@ Act as a Data Engineer. I need to generate a mock dataset for a hotel analytics 
 
 ### 5. Data Cleaning
 - Filtered out cancelled bookings to eliminate non-realized revenue and ensure the analysis reflects only actual revenue-generating stays. This step improves the accuracy of Net ADR and channel profitability calculations by excluding reservations that did not materialize 
+
+### x. Recommendations
+- เพิ่ม Wholesale partners ทำให้มีการเข้าพักจากช่องทางนี้มากขึ้น เพื่อลดการเพิ่งพา OTA Channels
+- ทำแผนเปลี่ยนลูกค้า OTA ให้กลับมาจองทาง Direct Website เช่นตอนเช็คอินแจกสิทธิ์ส่วนลดครั้งถัดไปเฉพาะการจองผ่านเว็บไซต์โรงแรม
+- ปรับลดค่าใช้จ่ายในการทำโฆษณาลง ให้เหมาะสมกับรายได้ของช่องทาง Direct Website
+- ทำโปรโมชันตามฤดูกาล
+        
+        Low season: ทำโปรโมชันมากขึ้น
+        High season: จำกัดการทำโปรโมชันให้ลดลง และเน้นโปรโมชัน  
+        ไปที่ห้องที่ขายได้น้อย
+- คำนวณค่า Net ADR เพื่อกำหนดเกณฑ์ขั้นต่ำก่อน เพื่อพิจารณาก่อนทำโปรโมชัน
