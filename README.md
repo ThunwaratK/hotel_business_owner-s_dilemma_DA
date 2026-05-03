@@ -216,6 +216,13 @@ Some bookings come from commission-based channels but show no commission deducti
         ไปที่ห้องที่ขายได้น้อย
 - คำนวณค่า Net ADR เพื่อกำหนดเกณฑ์ขั้นต่ำก่อน เพื่อพิจารณาก่อนทำโปรโมชัน
 
+## x. Insight
+- Direct Website and Wholesale have higher Net ADR because there is no commission from OTAs.
+- Booking.com and Expedia have high ADR, but after deducting commission, they result in the lowest Net ADR.
+- Although Direct Website has no commission, it incurs marketing spend, which increases the cost of acquisition and reduces net profit.
+- Wholesale, despite having the lowest gross revenue, has the highest net revenue because there are no commission and marketing costs.
+- Promotions on OTA channels slightly reduce commission costs, but they lower Net ADR even more, resulting in lower net revenue per room compared to OTA-only channels.
+
 ## x. Contributors
 - นายชยานนท์      จันทพันธ์                66102010135 
 - นายชโยดมปณ์  ธณวรโชติโภคิณ    66102010235 
