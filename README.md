@@ -219,17 +219,39 @@ Some bookings come from commission-based channels but show no commission deducti
 **Explanation:**
 This dashboard compares Gross vs Net Revenue by channel and shows Net ADR trends over time. The bar chart highlights the commission gap for OTA channels, while the line chart confirms whether OTA Net ADR stays lower across months. The KPI tiles provide quick context for total gross revenue, total OTA commissions, and overall Net ADR.
 
+**Results:**
+- Total Gross Revenue: $1,933,863.95
+- Total OTA Commissions: $166,222.71
+- Net ADR overall: $268.66
+- OTA channels show the largest gross vs net gap and the lowest Net ADR compared with Direct and Wholesale.
+- Result: Supported.
+
 ### Hypothesis 2 Dashboard: Direct Channel Cost Efficiency
 ![Hypothesis 2 Dashboard](dashboards/hypothesis2.png)
 
 **Explanation:**
 This view focuses on direct channel profitability after marketing cost. KPI tiles summarize marketing spend and cost per booking, while the bar charts compare gross, net, and acquisition cost across channel types. The Net Revenue Margin % chart shows whether Direct remains competitive after accounting for marketing expenses.
 
+**Results:**
+- Direct gross revenue: $468,370.40
+- Total marketing cost: $309,912.00
+- Marketing cost per direct booking: $387.87
+- Direct net revenue: $158,458.40
+- Net revenue margin for Direct is far lower than OTA and Wholesale, so Direct is not the most cost-efficient once marketing spend is included.
+- Result: Supported.
+
 ### Hypothesis 3 Dashboard: Promo Impact on OTA Net ADR
 ![Hypothesis 3 Dashboard](dashboards/hypothesis3.png)
 
 **Explanation:**
 This dashboard isolates OTA bookings and compares Net ADR between Promo+OTA vs OTA Only. The ADR vs Net ADR chart highlights the reduction caused by promotions, and the KPI card quantifies the Net ADR gap. Commission cost by segment provides additional context on profitability impact.
+
+**Results:**
+- Net ADR (OTA Only): $256.41
+- Net ADR (Promo + OTA): $231.94
+- Net ADR reduction from promotions: $24.47
+- Promo + OTA lowers Net ADR compared with OTA Only.
+- Result: Supported.
 
 ## Insight
 - Direct Website and Wholesale have higher Net ADR because there is no commission from OTAs.
