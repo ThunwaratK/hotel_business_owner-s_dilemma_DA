@@ -58,4 +58,5 @@ Act as a Data Engineer. I need to generate a mock dataset for a hotel analytics 
 - platform: Randomly ['Google Ads', 'Facebook']
 - cost_amount: Random integer for ad spend
 
-Please output the complete, executable Python code to generate these files.
+### 5. Data Cleaning
+- Filtered out cancelled bookings to eliminate non-realized revenue and ensure the analysis reflects only actual revenue-generating stays. This step improves the accuracy of Net ADR and channel profitability calculations by excluding reservations that did not materialize 
