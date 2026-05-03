@@ -204,26 +204,25 @@ Some bookings come from commission-based channels but show no commission deducti
 | Channel Type | dim_channels.channel_type | Channel group. | OTA, Direct, Wholesale |
 | Commission Model | dim_channels.commission_model | Distribution cost structure. | Percentage, Marketing Cost, Net Rate |
 | Rate Code | dim_rate_codes.rate_name (join via rate_code_id) | Rate plan category. | Rack Rate, Promotional Rate, Corporate Rate, Net Rate |
+| Segment | Derived from rate_name and channel_id | Booking segment based on promo and OTA presence. | Promo + OTA, Promo Only, OTA Only, Other |
 
-## x. Recommendations
-- เพิ่ม Wholesale partners ทำให้มีการเข้าพักจากช่องทางนี้มากขึ้น เพื่อลดการเพิ่งพา OTA Channels
-- ทำแผนเปลี่ยนลูกค้า OTA ให้กลับมาจองทาง Direct Website เช่นตอนเช็คอินแจกสิทธิ์ส่วนลดครั้งถัดไปเฉพาะการจองผ่านเว็บไซต์โรงแรม
-- ปรับลดค่าใช้จ่ายในการทำโฆษณาลง ให้เหมาะสมกับรายได้ของช่องทาง Direct Website
-- ทำโปรโมชันตามฤดูกาล
-        
-        Low season: ทำโปรโมชันมากขึ้น
-        High season: จำกัดการทำโปรโมชันให้ลดลง และเน้นโปรโมชัน  
-        ไปที่ห้องที่ขายได้น้อย
-- คำนวณค่า Net ADR เพื่อกำหนดเกณฑ์ขั้นต่ำก่อน เพื่อพิจารณาก่อนทำโปรโมชัน
+## Recommendations
+- Find more wholesale partners to increase stays from that channel and reduce reliance on OTA channels.
+- Create a plan to convert OTA guests to book directly, for example: at check-in, offer a next-stay discount valid only for direct website bookings.
+- Reduce advertising spend to align with direct website revenue.
+- Run seasonal promotions:
+  - Low season: increase promotions.
+  - High season: limit promotions and focus discounts on room types with lower sales.
+- Calculate Net ADR to set a minimum threshold before approving promotions.
 
-## x. Insight
+## Insight
 - Direct Website and Wholesale have higher Net ADR because there is no commission from OTAs.
 - Booking.com and Expedia have high ADR, but after deducting commission, they result in the lowest Net ADR.
 - Although Direct Website has no commission, it incurs marketing spend, which increases the cost of acquisition and reduces net profit.
 - Wholesale, despite having the lowest gross revenue, has the highest net revenue because there are no commission and marketing costs.
 - Promotions on OTA channels slightly reduce commission costs, but they lower Net ADR even more, resulting in lower net revenue per room compared to OTA-only channels.
 
-## x. Contributors
+## Contributors
 - นายชยานนท์      จันทพันธ์                66102010135 
 - นายชโยดมปณ์  ธณวรโชติโภคิณ    66102010235 
 - นายธัญวรัตม์      ก.วิบูลย์ศักดิ์ศรี      66102010567
