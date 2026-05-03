@@ -16,9 +16,58 @@ The core problem is high distribution costs. The hotel relies heavily on third-p
 Increase Net ADR (Average Daily Rate after commissions) by 10% within 6 months by optimizing promotions (rate codes) across different booking channels based on their commission structures.
 
 ## Hypothesis
-- OTA channels have lower net revenue than other channels due to commission costs.
-- When marketing spend is considered, direct channels may not always be the most cost-efficient.
-- Offering promotional rates on OTA channels reduces Net ADR per booking compared with non-promotional OTA bookings.
+### Hypothesis 1: OTA channels have lower net revenue than other channels due to commission costs
+**Data scope:** fact_bookings joined to dim_channels; exclude Cancelled bookings.
+
+**Method:**
+1. Compare Net Room Revenue and Net ADR by channel_name and channel_type.
+2. Compare the Gross vs Net gap to estimate commission impact per channel.
+3. Review Net ADR trend by channel_type to confirm the pattern over time.
+
+**Measures used:**
+- Net Room Revenue: $gross\ room\ revenue - commission\ cost$
+- Net ADR: $net\ room\ revenue / rooms\_sold$
+- Commission Share: $commission\ cost / gross\ room\ revenue$
+
+**Decision rule:**
+Hypothesis is supported if OTA shows lower Net ADR and lower Net Room Revenue than Direct/Wholesale and a larger Gross vs Net gap.
+
+---
+
+### Hypothesis 2: When marketing spend is considered, direct channels may not always be the most cost-efficient
+**Data scope:** fact_bookings joined to dim_channels; fact_marketing_spend for Direct only; exclude Cancelled bookings.
+
+**Method:**
+1. Calculate Total Acquisition Cost for Direct as Marketing Cost (and for OTA as Commission Cost).
+2. Compare Net Revenue Margin % across channel_name.
+3. Compare Direct Net Revenue after marketing against other channels.
+
+**Measures used:**
+- Total Acquisition Cost (Direct): $SUM(cost\_amount)$
+- Cost Per Booking (Direct): $Total\ Acquisition\ Cost / COUNTD(booking\_id)$
+- Net Revenue Margin %: $(SUM(true\ gross\ room\ revenue) - Total\ Acquisition\ Cost) / SUM(true\ gross\ room\ revenue)$
+
+**Decision rule:**
+Hypothesis is supported if Direct’s Net Revenue Margin % is not higher than OTA/Wholesale once marketing cost is included.
+
+
+---
+
+### Hypothesis 3: Promotional rates on OTA channels reduce Net ADR per booking
+**Data scope:** fact_bookings joined to dim_channels and dim_rate_codes; filter channel_type = OTA; exclude Cancelled bookings.
+
+**Method:**
+1. Split OTA bookings into two segments: OTA Only (non-PROMO) vs Promo + OTA.
+2. Compare Net ADR between the two segments.
+3. Quantify the Net ADR reduction and compare commission cost between segments.
+
+**Measures used:**
+- Net ADR: $net\ room\ revenue / rooms\_sold$
+- Net ADR Reduction: $Net\ ADR_{OTA\ Only} - Net\ ADR_{Promo+OTA}$
+- Commission Cost: $gross\ room\ revenue \times default\ commission\ rate$ (when commissionable)
+
+**Decision rule:**
+Hypothesis is supported if Promo + OTA has lower Net ADR than OTA Only by a meaningful margin.
 
 ## Prompt used to generated mock dataset
 
