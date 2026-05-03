@@ -131,6 +131,15 @@ Direct marketing spend fact table. Date format is dd/mm/yyyy.
 - Cost Per Booking: $Total\ Acquisition\ Cost / COUNTD(booking\_id)$.
 - Net Revenue Margin %: $(SUM(true\ gross\ room\ revenue) - Total\ Acquisition\ Cost) / SUM(true\ gross\ room\ revenue)$.
 
+## Dimensions
+
+| Dimension | Source Field(s) | Description | Example Values |
+| --- | --- | --- | --- |
+| Booking Channel | dim_channels.channel_name (join via channel_id) | Booking source or brand. | Booking.com, Expedia, Direct Website, Wholesale Partner |
+| Channel Type | dim_channels.channel_type | Channel group. | OTA, Direct, Wholesale |
+| Commission Model | dim_channels.commission_model | Distribution cost structure. | Percentage, Marketing Cost, Net Rate |
+| Rate Code | dim_rate_codes.rate_name (join via rate_code_id) | Rate plan category. | Rack Rate, Promotional Rate, Corporate Rate, Net Rate |
+
   
 ## 5. Data Cleaning
 - Filtered out cancelled bookings to eliminate non-realized revenue and ensure the analysis reflects only actual revenue-generating stays. This step improves the accuracy of Net ADR and channel profitability calculations by excluding reservations that did not materialize 
