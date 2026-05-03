@@ -206,6 +206,31 @@ Some bookings come from commission-based channels but show no commission deducti
 | Rate Code | dim_rate_codes.rate_name (join via rate_code_id) | Rate plan category. | Rack Rate, Promotional Rate, Corporate Rate, Net Rate |
 | Segment | Derived from rate_name and channel_id | Booking segment based on promo and OTA presence. | Promo + OTA, Promo Only, OTA Only, Other |
 
+## EDA Plan & Visualization
+
+### EDA Goals
+- Identify which booking channels lose the most revenue to commissions.
+- Evaluate whether Direct remains cost-efficient after marketing spend.
+- Measure the Net ADR impact of promotional rates within OTA channels.
+
+### Hypothesis 1 Dashboard: OTA Net Revenue vs Other Channels
+![Hypothesis 1 Dashboard](dashboards/hypothesis1.png)
+
+**Explanation:**
+This dashboard compares Gross vs Net Revenue by channel and shows Net ADR trends over time. The bar chart highlights the commission gap for OTA channels, while the line chart confirms whether OTA Net ADR stays lower across months. The KPI tiles provide quick context for total gross revenue, total OTA commissions, and overall Net ADR.
+
+### Hypothesis 2 Dashboard: Direct Channel Cost Efficiency
+![Hypothesis 2 Dashboard](dashboards/hypothesis2.png)
+
+**Explanation:**
+This view focuses on direct channel profitability after marketing cost. KPI tiles summarize marketing spend and cost per booking, while the bar charts compare gross, net, and acquisition cost across channel types. The Net Revenue Margin % chart shows whether Direct remains competitive after accounting for marketing expenses.
+
+### Hypothesis 3 Dashboard: Promo Impact on OTA Net ADR
+![Hypothesis 3 Dashboard](dashboards/hypothesis3.png)
+
+**Explanation:**
+This dashboard isolates OTA bookings and compares Net ADR between Promo+OTA vs OTA Only. The ADR vs Net ADR chart highlights the reduction caused by promotions, and the KPI card quantifies the Net ADR gap. Commission cost by segment provides additional context on profitability impact.
+
 ## Insight
 - Direct Website and Wholesale have higher Net ADR because there is no commission from OTAs.
 - Booking.com and Expedia have high ADR, but after deducting commission, they result in the lowest Net ADR.
